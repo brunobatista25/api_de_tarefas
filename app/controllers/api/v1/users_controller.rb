@@ -1,11 +1,13 @@
 class Api::V1::UsersController < ApplicationController
   respond_to :json
 
+  # mostra todos os usuarios
   def index
     @user = User.all
     render json: { user: @user }, status: 200
   end
 
+  # mostrar  um usuario especifico pelo id, se nao tiver vai mostar um erro 404
   def show
     begin
       @user = User.find(params[:id])
@@ -15,6 +17,7 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  #Cria um usuario,se nao criar por algum motivo vai mostar um erro 422
   def create
     user = User.new(user_params)
 
@@ -25,6 +28,7 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  #Edita um usuario,se nao editar por algum motivo vai mostar um erro 422
   def update
     user = User.find(params[:id])
 
@@ -35,6 +39,7 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  #Apaga um usuario,se não apagar retorna erro 204
   def destroy
     user = User.find(params[:id])
     user.destroy
@@ -43,6 +48,7 @@ class Api::V1::UsersController < ApplicationController
 
   private
 
+  #paramentros do usuaro permitidos para se usar no json
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation)
   end
