@@ -9,7 +9,11 @@ class User < ApplicationRecord
 
   #antes de criar o usuario vou executar a tarefa generate_authentication_token!
   before_create :generate_authentication_token!
-  
+
+  #usuario tem varias atividades
+  #dependent toda vez que eu apago um usuario apago as tasks
+  has_many :tasks, dependent: :destroy
+
   #ao criar um usuario gera um informaçaão do email data de criaçaão e o token
   def info
     "#{email} - #{created_at} - Token: #{Devise.friendly_token}"
