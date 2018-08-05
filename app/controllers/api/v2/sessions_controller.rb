@@ -1,6 +1,6 @@
-class Api::V1::SessionsController < ApplicationController
-  
-  #Ao fazer login busca um usario pelo email, verifica o email e senha,caso de erro retorna 401
+class Api::V2::SessionsController < ApplicationController
+  # Ao fazer login busca um usuario pelo e-mail, verifica o e-mail e senha,
+  # caso de erro retorna 401
   def create
     user = User.find_by(email: sessions_params[:email])
 
@@ -14,7 +14,7 @@ class Api::V1::SessionsController < ApplicationController
     end
   end
 
-  #apaga uma sessao de usuario,ou seja fazer logout
+  # Apaga uma sessao de usuario,ou seja fazer logout
   def destroy
     user = User.find_by(auth_token: params[:id])
     user.generate_authentication_token!
@@ -24,7 +24,7 @@ class Api::V1::SessionsController < ApplicationController
 
   private
 
-  #parametros permitidos no json de session
+  # Parametros permitidos no json de session
   def sessions_params
     params.require(:session).permit(:email, :password)
   end

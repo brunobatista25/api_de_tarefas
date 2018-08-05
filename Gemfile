@@ -17,6 +17,8 @@ gem 'puma', '~> 3.11'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 gem 'faker'
+gem 'active_model_serializers'
+gem 'ransack', github: 'activerecord-hackery/ransack'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
