@@ -1,0 +1,12 @@
+## YAML Templatesss
+---
+default: -p pretty -p html -p production
+
+pretty: --format pretty
+for_ci:  --format progress
+
+html:  --format html --out=features/results/relatorio.html
+json:  --format json --out=features/results/relatorio.json
+
+homolog:  ENVIRONMENT_TYPE=homolog
+production:  ENVIRONMENT_TYPE=production
