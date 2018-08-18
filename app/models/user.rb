@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   # validando que o token e unico
   validates_uniqueness_of :auth_token
+  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: [ :create, :update]
 
   #antes de criar o usuario vou executar a tarefa generate_authentication_token!
   before_create :generate_authentication_token!
