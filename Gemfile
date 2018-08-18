@@ -18,7 +18,7 @@ gem 'devise'
 gem 'faker'
 gem 'active_model_serializers'
 gem 'ransack', github: 'activerecord-hackery/ransack'
-gem 'rails-i18n'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
@@ -51,6 +51,7 @@ group :production do
   gem 'faker'
   gem 'pg'
   gem 'rails_12factor'
+  gem 'rails-i18n'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
