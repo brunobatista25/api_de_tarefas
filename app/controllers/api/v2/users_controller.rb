@@ -1,5 +1,5 @@
 class Api::V2::UsersController < ApplicationController
-  before_action :authenticate_with_token, only: [:update, :destroy]
+  before_action :authenticate_with_token!, only: [:update, :destroy]
 
   # mostra todos os usuarios
   def index
