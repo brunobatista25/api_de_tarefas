@@ -5,12 +5,17 @@ class Api::V2::ContactsController < ApplicationController
   def index
     @contacts = Contact.all
 
-    render json: @contacts
+    render json: @contacts, status: 200
   end
 
   # GET /contacts/1
   def show
-    render json: @contact
+    begin
+      contact = Contact.find(params[:id])
+      render json: contact, status: 200
+    rescue
+      render json: { errors: contact.errors }, status: 422
+    end
   end
 
   # POST /contacts
@@ -18,18 +23,18 @@ class Api::V2::ContactsController < ApplicationController
     @contact = Contact.new(contact_params)
 
     if @contact.save
-      render json: @contact, status: :created, location: @contact
+      render json: @contact, status: 201
     else
-      render json: @contact.errors, status: :unprocessable_entity
+      render json: { errors: @contact.errors }, status: 422
     end
   end
 
   # PATCH/PUT /contacts/1
   def update
     if @contact.update(contact_params)
-      render json: @contact
+      render json: @contact, status: 200
     else
-      render json: @contact.errors, status: :unprocessable_entity
+      render json: { errors: @contact.errors }, status: 422
     end
   end
 
@@ -39,13 +44,14 @@ class Api::V2::ContactsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_contact
-      @contact = Contact.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def contact_params
-      params.require(:contact).permit(:name, :last_name, :email, :age, :phone, :address, :state, :city)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_contact
+    @contact = Contact.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def contact_params
+    params.require(:contact).permit(:name, :last_name, :email, :age, :phone, :address, :state, :city)
+  end
 end

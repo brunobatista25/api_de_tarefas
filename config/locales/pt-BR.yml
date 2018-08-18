@@ -3,6 +3,7 @@ pt-BR:
   activerecord:
     errors:
       messages:
+        not_found: "Não encontrado"
         record_invalid: 'A validação falhou: %{errors}'
         restrict_dependent_destroy:
           has_one: Não é possível excluir o registro pois existe um %{record} dependente
@@ -109,6 +110,7 @@ pt-BR:
   errors:
     format: "%{attribute} %{message}"
     messages:
+      not_found: "Não encontrado"
       accepted: deve ser aceito
       blank: não pode ficar em branco
       present: deve ficar em branco
