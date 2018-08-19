@@ -602,6 +602,12 @@ Endpoint para logar e deslogar o usuário
 ## Tarefas [/tasks]
 * Para listar/criar/editar/excluir tarefas é preciso estar logado.
 
++ token (required, string)
++ title (required, string)
++ description (optional, string)
++ deadline (optional, datetime)
++ done (optional, boolean)
+
 ### Listar Tarefas [GET]
 + Response 200 (application/json) 
 
@@ -614,27 +620,139 @@ Endpoint para logar e deslogar o usuário
 
     + Headers
    
-            Autorization: {{token}}
-+ Response 201 (application/json) 
+            Authorization: {Basic ABC123}
+            
++ Request 200 (application/json)  
+
+        {
+          "task": {
+            "title": "Tarefa 1",
+            "description": "Descrição da tarefa 1.",
+            "deadline": "2018-08-21 15:00:00",
+            "done": true
+          }
+        }
+            
++ Response 201 (application/json)
+
+        {
+          "data": {
+            "id": "3",
+            "type": "tasks",
+            "attributes": {
+              "title": "Tarefa 1",
+              "description": "Descrição da tarefa 1.",
+              "done": false,
+              "deadline": "2018-08-21T15:00:00.000Z",
+              "user-id": 12,
+              "created-at": "2018-08-19T14:27:43.700Z",
+              "updated-at": "2018-08-19T14:27:43.700Z",
+              "short-description": "Descrição da tarefa 1.",
+              "is-late": false
+          },
+          "relationships": {
+            "user": {
+                "data": {
+                    "id": "12",
+                    "type": "users"
+                }
+            }
+          }
+        }
+
++ Response 404 (application/json)
+
+        {
+          "errors": {
+            "title": [
+              "não pode ficar em branco"
+            ]
+          }
+        }
 
 ### Editar Tarefas [PUT]
 + Request 200 (application/json)
 
     + Headers
    
-            Autorization: {{token}}
+            Authorization: {Basic ABC123}
             
-+ Response 201 (application/json) 
++ Request 200 (application/json)  
 
+        {
+          "task": {
+            "id": "7",
+            "title": "Tarefa 1",
+            "description": "Descrição da tarefa 2.",
+            "deadline": "2018-08-21 15:00:00",
+            "done": true
+          }
+        }
+
++ Response 200 (application/json)
+
+        {
+          "user_id": 12,
+            "id": 7,
+            "title": "Tarefa 1",
+            "description": "Descrição da tarefa 2.",
+            "deadline": "2018-08-21T15:00:00.000Z",
+            "done": true,
+            "created_at": "2018-08-19T14:34:32.842Z",
+            "updated_at": "2018-08-19T14:49:08.877Z"
+        }
+
++ Response 404 (application/json)
+
+        {
+          "errors": {
+            "title": [
+              "não pode ficar em branco"
+            ]
+          }
+        }
+        
 ### Editar uma Parte da Tarefas [PATCH]
 + Request 200 (application/json)
 
     + Headers
    
-            Autorization: {{token}}
+            Authorization: {Basic ABC123}
             
-+ Response 201 (application/json) 
++ Request 200 (application/json)  
 
+        {
+          "task": {
+            "id": "3",
+            "title": "Tarefa 1",
+            "description": "Descrição da tarefa 1.",
+            "deadline": "2018-08-21 15:00:00",
+            "done": true
+          }
+        }
+            
++ Response 200 (application/json)
+
+        {
+          "user_id": 12,
+            "id": 3,
+            "title": "Tarefa 1",
+            "description": "Descrição da tarefa 2.",
+            "deadline": "2018-08-21T15:00:00.000Z",
+            "done": true,
+            "created_at": "2018-08-19T14:34:32.842Z",
+            "updated_at": "2018-08-19T14:49:08.877Z"
+        }
+
++ Response 404 (application/json)
+
+        {
+          "errors": {
+            "title": [
+              "não pode ficar em branco"
+            ]
+          }
+        }
 ### Deletar Tarefas [DELETE]
 + Response 204 (application/json)
 
