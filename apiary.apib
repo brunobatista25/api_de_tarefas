@@ -1,0 +1,619 @@
+FORMAT: 1A
+HOST: http://api-de-tarefas.herokuapp.com/
+
+# Api de Tarefas
+
+Uma api de tarefas onde um usuário logado pode listar/criar/editar/excluir tarefas,
+e listar/criar/editar/excluir uma lista de contatos.
+
+## Contatos [/contacts]
+
+Endpoint para criar/editar/apagar/listar usuários passando name, lastname, email, age, phone, address, state e city.
+
++ name (required, string)
++ last_name (required, string)
++ email (required, string)
++ age (required, integer)
++ phone (required, integer)
++ address (required, string)
++ state (required, string)
++ city (required, string)
+
+### Listar Contatos [GET]
++ Response 200 (application/json)
+
+        {
+          "data": [
+            {
+              "id": "1",
+              "type": "contacts",
+              "attributes": {
+                "name": "franco",
+                "last-name": "junior",
+                "email": "bruno123@gmail.com",
+                "age": 27,
+                "phone": "384379833",
+                "address": "rua tres",
+                "state": "nova",
+                "city": "melhor"
+              }
+            },
+            {
+              "id": "2",
+              "type": "contacts",
+              "attributes": {
+                "name": "tuane",
+                "last-name": "pera",
+                "email": "canco@gmail.com",
+                "age": 66,
+                "phone": "839843794",
+                "address": "rua do caico",
+                "state": "caico",
+                "city": "taipo"
+              }
+            }
+        }
+
+### Criar Contato [POST]
+
++ Request 200 (application/json)
+
+        {
+          "name": "bruno",
+          "last-name": "batista",
+          "email": "bruno@gmail.com",
+          "age": "28",
+          "phone": "21984759575",
+          "address": "Rua dois",
+          "state": "Minas Gerais",
+          "city": "Belo Horizonte"
+        }
+        
++ Response 201 (application/json)
+
+        {
+          "data": {
+            "id": "12",
+            "type": "contacts",
+            "attributes": {
+              "name": "bruno",
+              "last-name": "brando",
+              "email": "bruno@gmail.com",
+              "age": 28,
+              "phone": "21984759575",
+              "address": "Rua dois",
+              "state": "Minas Gerais",
+              "city": "Belo Horizonte"
+            }
+          }
+        } 
+
++ Response 400 (application/json) 
+
+        {
+          "errors": {
+            "email": [
+              "não é válido"
+            ]
+          }
+        }
+        
++ Response 400 (application/json) 
+
+        {
+          "errors": {
+            "email": [
+              "não pode ficar em branco"
+            ]
+          }
+        }
+
++ Response 400 (application/json) 
+
+        {
+          "errors": {
+            "email": [
+              "já está em uso"
+            ]
+          }
+        }
+
++ Response 400 (application/json) 
+
+        {
+          "errors": {
+            "name": [
+              "não pode ficar em branco"
+            ]
+          }
+        }
+
++ Response 400 (application/json) 
+
+        {
+          "errors": {
+            "age": [
+              "não é um número"
+            ]
+          }
+        }
+
++ Response 400 (application/json) 
+
+        {
+          "errors": {
+            "phone": [
+              "não é um número"
+            ]
+          }
+        }
+
+### Editar contato [PUT]
+
++ Request (application/json)
+
+    + Headers
+
+            Location: /contacts/1
+    
+    + body
+
+            {
+              "id": 1,
+              "name": "bruno",
+              "last-name": "batista",
+              "email": "bruno@gmail.com",
+              "age": "28",
+              "phone": "21984759575",
+              "address": "Rua dois",
+              "state": "Minas Gerais",
+              "city": "Belo Horizonte"
+            }
+        
++ Response 201 (application/json)
+
+        {
+          "data": {
+            "id": "1",
+            "type": "contacts",
+            "attributes": {
+              "name": "bruno",
+              "last-name": "brando",
+              "email": "bruno@gmail.com",
+              "age": 28,
+              "phone": "21984759575",
+              "address": "Rua dois",
+              "state": "Minas Gerais",
+              "city": "Belo Horizonte"
+            }
+          }
+        } 
+
++ Response 400 (application/json) 
+
+        {
+          "errors": {
+            "email": [
+              "não é válido"
+            ]
+          }
+        }
+        
++ Response 400 (application/json) 
+
+        {
+          "errors": {
+            "email": [
+              "não pode ficar em branco"
+            ]
+          }
+        }
+
++ Response 400 (application/json) 
+
+        {
+          "errors": {
+            "email": [
+              "já está em uso"
+            ]
+          }
+        }
+
++ Response 400 (application/json) 
+
+        {
+          "errors": {
+            "name": [
+              "não pode ficar em branco"
+            ]
+          }
+        }
+
++ Response 400 (application/json) 
+
+        {
+          "errors": {
+            "age": [
+              "não é um número"
+            ]
+          }
+        }
+
++ Response 400 (application/json) 
+
+        {
+          "errors": {
+            "phone": [
+              "não é um número"
+            ]
+          }
+        }
+        
+### Editar Parte do Contato [PATCH]
+
++ Request (application/json)
+
+    + Headers
+
+            Location: /contacts/1
+    
+    + body
+
+            {
+              "id": 1,
+              "name": "bruno",
+              "last-name": "batista",
+              "email": "bruno@gmail.com",
+              "age": "28",
+              "phone": "21984759575",
+              "address": "Rua dois",
+              "state": "Minas Gerais",
+              "city": "Belo Horizonte"
+            }
+        
++ Response 201 (application/json)
+
+        {
+          "data": {
+            "id": "1",
+            "type": "contacts",
+            "attributes": {
+              "name": "bruno",
+              "last-name": "brando",
+              "email": "bruno@gmail.com",
+              "age": 28,
+              "phone": "21984759575",
+              "address": "Rua dois",
+              "state": "Minas Gerais",
+              "city": "Belo Horizonte"
+            }
+          }
+        } 
+
++ Response 400 (application/json) 
+
+        {
+          "errors": {
+            "email": [
+              "não é válido"
+            ]
+          }
+        }
+        
++ Response 400 (application/json) 
+
+        {
+          "errors": {
+            "email": [
+              "não pode ficar em branco"
+            ]
+          }
+        }
+
++ Response 400 (application/json) 
+
+        {
+          "errors": {
+            "email": [
+              "já está em uso"
+            ]
+          }
+        }
+
++ Response 400 (application/json) 
+
+        {
+          "errors": {
+            "name": [
+              "não pode ficar em branco"
+            ]
+          }
+        }
+
++ Response 400 (application/json) 
+
+        {
+          "errors": {
+            "age": [
+              "não é um número"
+            ]
+          }
+        }
+
++ Response 400 (application/json) 
+
+        {
+          "errors": {
+            "phone": [
+              "não é um número"
+            ]
+          }
+        }
+
+
+### Apagar Contato [DELETE]
++ Response 204 (application/json)
+
+## Usuários [/users]
+
+EndPoint para criar usuários passando email,password e confirm_password.
+
++ email (required, string)
++ password (required, password)
++ confirm_password (optional, password)
+
+### Criar Usário [POST]
++ Request (application/json)
+
+        {
+          "user": {
+            "email": "brunobatista22@gmail.com",
+            "password": "123456",
+            "password_confirmation": "123456"
+          }
+        }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+              "data": {
+                "id": "3",
+                "type": "users",
+                "attributes": {
+                  "email": "brunobatista22@gmail.com",
+                  "auth-token": "xGAv3zLcH41eZpPsBZ66",
+                  "created-at": "2018-08-18T13:38:36.663Z",
+                  "updated-at": "2018-08-18T13:38:36.663Z"
+                }
+              }   
+            }
+        
++ Response 400 (application/json)
+
+            {
+              "errors": {
+                "password": [
+                  "não pode ficar em branco"
+                ]
+              }
+            } 
+            
++ Response 400 (application/json)
+
+            {
+              "errors": {
+                "password_confirmation": [
+                  "não é igual a Password"
+                ]
+              }
+            }   
+            
++ Response 400 (application/json)
+
+            {
+              "errors": {
+                "email": [
+                  "já está em uso"
+                ]
+              }
+            }
+            
++ Response 400 (application/json)  
+
+        {
+          "errors": {
+            "email": [
+              "não é válido"
+            ]
+          }
+        }
+
+### Editar usuário [PUT]
++ Request (application/json)
+
+        {
+          "user": {
+            "id": "2"
+            "email": "brunobatista22@gmail.com",
+            "password": "123456",
+            "password_confirmation": "123456"
+          }
+        }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+              "data": {
+                "id": "2",
+                "type": "users",
+                "attributes": {
+                  "email": "brunobatista22@gmail.com",
+                  "auth-token": "xGAv3zLcH41eZpPsBZ66",
+                  "created-at": "2018-08-18T13:38:36.663Z",
+                  "updated-at": "2018-08-18T13:38:36.663Z"
+                }
+              }   
+            }
+        
++ Response 400 (application/json)
+
+            {
+              "errors": {
+                "password": [
+                  "não pode ficar em branco"
+                ]
+              }
+            } 
+            
++ Response 400 (application/json)
+
+            {
+              "errors": {
+                "password_confirmation": [
+                  "não é igual a Password"
+                ]
+              }
+            }   
+            
++ Response 400 (application/json)
+
+            {
+              "errors": {
+                "email": [
+                  "já está em uso"
+                ]
+              }
+            }
+            
++ Response 400 (application/json)  
+
+        {
+          "errors": {
+            "email": [
+              "não é válido"
+            ]
+          }
+        }
+
+### Editar Parte do Usuário [PATCH]
++ Request (application/json)
+
+        {
+          "user": {
+            "id": "2",
+            "email": "brunobatista22@gmail.com",
+            "password": "123456",
+            "password_confirmation": "123456"
+          }
+        }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+              "data": {
+                "id": "2",
+                "type": "users",
+                "attributes": {
+                  "email": "brunobatista22@gmail.com",
+                  "auth-token": "xGAv3zLcH41eZpPsBZ66",
+                  "created-at": "2018-08-18T13:38:36.663Z",
+                  "updated-at": "2018-08-18T13:38:36.663Z"
+                }
+              }   
+            }
+        
++ Response 400 (application/json)
+
+            {
+              "errors": {
+                "password": [
+                  "não pode ficar em branco"
+                ]
+              }
+            } 
+            
++ Response 400 (application/json)
+
+            {
+              "errors": {
+                "password_confirmation": [
+                  "não é igual a Password"
+                ]
+              }
+            }   
+            
++ Response 400 (application/json)
+
+            {
+              "errors": {
+                "email": [
+                  "já está em uso"
+                ]
+              }
+            }
+            
++ Response 400 (application/json)  
+
+        {
+          "errors": {
+            "email": [
+              "não é válido"
+            ]
+          }
+        }
+        
+## Login [/sessions]
+Endpoint para logar e deslogar o usuário
+* Ao fazer login passando o token do usuário,A API vai gerar um novo token e será com esse token que irá conseguir listar/criar/editar/apagar tarefas.
+* Para deslogar o usuário so passar o token na url.
+* https://api-de-tarefas.herokuapp.com/sessions/2mDe7dXZRAkH
+### Fazer Login [POST]
++ Request 200 (application/json)
+
+    + Headers
+   
+            Autorization: {{token}}
+   
+   
++ Response 201 (application/json)
+
+        {
+          "session": {
+            "email": "brunobatista66@gmail.com",
+            "password": "123456"
+          }
+        }
+
++ Response 400 (application/json)  
+
+        {
+          "errors": "Senha ou e-mail inválidos"
+        }
+
+### Deslogar [DELETE]
++ Response 204 (application/json) 
+
+## Tarefas [/tasks]
+### Listar Tarefas [GET]
++ Response 200 (application/json) 
+
+### Criar Tarefas [POST]
++ Request 200 (application/json)
++ Response 201 (application/json) 
+
+### Editar Tarefas [PUT]
++ Request 200 (application/json)
++ Response 201 (application/json) 
+
+### Editar uma Parte da Tarefas [PATCH]
++ Request 200 (application/json)
++ Response 201 (application/json) 
+
+### Deletar Tarefas [DELETE]
++ Response 204 (application/json)
