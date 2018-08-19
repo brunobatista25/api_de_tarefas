@@ -569,11 +569,12 @@ EndPoint para criar usuários passando email,password e confirm_password.
         }
         
 ## Login [/sessions]
-Endpoint para logar e deslogar o usuário
+Endpoint para login e logout do usuário
 * Ao fazer login passando o token do usuário,A API vai gerar um novo token e será com esse token que irá conseguir listar/criar/editar/apagar tarefas.
 * Para deslogar o usuário so passar o token na url.
 * https://api-de-tarefas.herokuapp.com/sessions/2mDe7dXZRAkH
-### Fazer Login [POST]
+
+### Login [POST]
 + Request 200 (application/json)
 
     + Headers
@@ -596,11 +597,11 @@ Endpoint para logar e deslogar o usuário
           "errors": "Senha ou e-mail inválidos"
         }
 
-### Deslogar [DELETE]
+### Logout [DELETE]
 + Response 204 (application/json) 
 
 ## Tarefas [/tasks]
-* Para listar/criar/editar/excluir tarefas é preciso estar logado.
+* Para listar/criar/editar/excluir tarefas é preciso fazer login.
 
 + token (required, string)
 + title (required, string)
