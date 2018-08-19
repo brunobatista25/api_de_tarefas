@@ -600,20 +600,44 @@ Endpoint para logar e deslogar o usuário
 + Response 204 (application/json) 
 
 ## Tarefas [/tasks]
+* Para listar/criar/editar/excluir tarefas é preciso estar logado.
+
 ### Listar Tarefas [GET]
 + Response 200 (application/json) 
 
+    + Headers
+   
+            Autorization: {{token}}
+
 ### Criar Tarefas [POST]
 + Request 200 (application/json)
+
+    + Headers
+   
+            Autorization: {{token}}
 + Response 201 (application/json) 
 
 ### Editar Tarefas [PUT]
 + Request 200 (application/json)
+
+    + Headers
+   
+            Autorization: {{token}}
+            
 + Response 201 (application/json) 
 
 ### Editar uma Parte da Tarefas [PATCH]
 + Request 200 (application/json)
+
+    + Headers
+   
+            Autorization: {{token}}
+            
 + Response 201 (application/json) 
 
 ### Deletar Tarefas [DELETE]
 + Response 204 (application/json)
+
+    + Headers
+   
+            Autorization: {{token}}
