@@ -20,54 +20,68 @@ Endpoint para criar/editar/apagar/listar usuários passando name, lastname, emai
 + city (required, string)
 
 ### Listar Contatos [GET]
+            
 + Response 200 (application/json)
 
-        {
-          "data": [
+    + Headers
+    
+            Accept: application/vnd.tasksmanager.v2
+    
+    + body
+
             {
-              "id": "1",
-              "type": "contacts",
-              "attributes": {
-                "name": "franco",
-                "last-name": "junior",
-                "email": "bruno123@gmail.com",
-                "age": 27,
-                "phone": "384379833",
-                "address": "rua tres",
-                "state": "nova",
-                "city": "melhor"
-              }
-            },
-            {
-              "id": "2",
-              "type": "contacts",
-              "attributes": {
-                "name": "tuane",
-                "last-name": "pera",
-                "email": "canco@gmail.com",
-                "age": 66,
-                "phone": "839843794",
-                "address": "rua do caico",
-                "state": "caico",
-                "city": "taipo"
-              }
-            }
-        }
+              "data": [
+                {
+                  "id": "1",
+                  "type": "contacts",
+                  "attributes": {
+                    "name": "franco",
+                    "last-name": "junior",
+                    "email": "bruno123@gmail.com",
+                    "age": 27,
+                    "phone": "384379833",
+                    "address": "rua tres",
+                    "state": "nova",
+                    "city": "melhor"
+                  }
+                },
+                {
+                  "id": "2",
+                  "type": "contacts",
+                  "attributes": {
+                    "name": "tuane",
+                    "last-name": "pera",
+                    "email": "canco@gmail.com",
+                    "age": 66,
+                    "phone": "839843794",
+                    "address": "rua do caico",
+                    "state": "caico",
+                    "city": "taipo"
+                  }
+                }
+            }  
 
 ### Criar Contato [POST]
 
+
 + Request 200 (application/json)
 
-        {
-          "name": "bruno",
-          "last-name": "batista",
-          "email": "bruno@gmail.com",
-          "age": "28",
-          "phone": "21984759575",
-          "address": "Rua dois",
-          "state": "Minas Gerais",
-          "city": "Belo Horizonte"
-        }
+    + Headers
+    
+            Accept: application/vnd.tasksmanager.v2
+            
+    + body
+
+            {
+              "name": "bruno",
+              "last-name": "batista",
+              "email": "bruno@gmail.com",
+              "age": "28",
+              "phone": "21984759575",
+              "address": "Rua dois",
+              "state": "Minas Gerais",
+              "city": "Belo Horizonte"
+            }
         
 + Response 201 (application/json)
 
@@ -153,7 +167,8 @@ Endpoint para criar/editar/apagar/listar usuários passando name, lastname, emai
 + Request (application/json)
 
     + Headers
-
+    
+            Accept: application/vnd.tasksmanager.v2
             Location: /contacts/1
     
     + body
@@ -254,7 +269,8 @@ Endpoint para criar/editar/apagar/listar usuários passando name, lastname, emai
 + Request (application/json)
 
     + Headers
-
+    
+            Accept: application/vnd.tasksmanager.v2
             Location: /contacts/1
     
     + body
@@ -352,6 +368,10 @@ Endpoint para criar/editar/apagar/listar usuários passando name, lastname, emai
 
 
 ### Apagar Contato [DELETE]
+    + Headers
+    
+            Accept: application/vnd.tasksmanager.v2
+            
 + Response 204 (application/json)
 
 ## Usuários [/users]
@@ -363,15 +383,22 @@ EndPoint para criar usuários passando email,password e confirm_password.
 + confirm_password (optional, password)
 
 ### Criar Usário [POST]
+
 + Request (application/json)
 
-        {
-          "user": {
-            "email": "brunobatista22@gmail.com",
-            "password": "123456",
-            "password_confirmation": "123456"
-          }
-        }
+    + Headers
+    
+            Accept: application/vnd.tasksmanager.v2
+    
+    + body
+
+            {
+              "user": {
+                "email": "brunobatista22@gmail.com",
+                "password": "123456",
+                "password_confirmation": "123456"
+              }
+            }
 
 + Response 201 (application/json)
 
@@ -431,16 +458,23 @@ EndPoint para criar usuários passando email,password e confirm_password.
         }
 
 ### Editar usuário [PUT]
+   
 + Request (application/json)
 
-        {
-          "user": {
-            "id": "2"
-            "email": "brunobatista22@gmail.com",
-            "password": "123456",
-            "password_confirmation": "123456"
-          }
-        }
+    + Headers
+    
+            Accept: application/vnd.tasksmanager.v2
+    
+    + body
+
+            {
+              "user": {
+                "id": "2"
+                "email": "brunobatista22@gmail.com",
+                "password": "123456",
+                "password_confirmation": "123456"
+              }
+            }
 
 + Response 201 (application/json)
 
@@ -500,16 +534,23 @@ EndPoint para criar usuários passando email,password e confirm_password.
         }
 
 ### Editar Parte do Usuário [PATCH]
+
 + Request (application/json)
 
-        {
-          "user": {
-            "id": "2",
-            "email": "brunobatista22@gmail.com",
-            "password": "123456",
-            "password_confirmation": "123456"
-          }
-        }
+    + Headers
+    
+            Accept: application/vnd.tasksmanager.v2
+            
+    + body
+
+            {
+              "user": {
+                "id": "2",
+                "email": "brunobatista22@gmail.com",
+                "password": "123456",
+                "password_confirmation": "123456"
+              }
+            }
 
 + Response 201 (application/json)
 
@@ -578,7 +619,8 @@ Endpoint para login e logout do usuário
 + Request 200 (application/json)
 
     + Headers
-   
+    
+            Accept: application/vnd.tasksmanager.v2
             Autorization: {{token}}
    
    
@@ -600,6 +642,11 @@ Endpoint para login e logout do usuário
 ### Logout [DELETE]
 + Response 204 (application/json) 
 
+    + Headers
+    
+            Accept: application/vnd.tasksmanager.v2
+   
+
 ## Tarefas [/tasks]
 * Para listar/criar/editar/excluir tarefas é preciso fazer login.
 
@@ -613,14 +660,30 @@ Endpoint para login e logout do usuário
 + Response 200 (application/json) 
 
     + Headers
-   
+
+            Accept: application/vnd.tasksmanager.v2
             Autorization: {{token}}
+    
++ Request 200 (application/json)    
+
+        {
+          "user_id": 12,
+            "id": 3,
+            "title": "Tarefa 1",
+            "description": "Descrição da tarefa 2.",
+            "deadline": "2018-08-21T15:00:00.000Z",
+            "done": true,
+            "created_at": "2018-08-19T14:34:32.842Z",
+            "updated_at": "2018-08-19T14:49:08.877Z"
+        }
+
 
 ### Criar Tarefas [POST]
 + Request 200 (application/json)
 
     + Headers
-   
+
+            Accept: application/vnd.tasksmanager.v2
             Authorization: {Basic ABC123}
             
 + Request 200 (application/json)  
@@ -675,7 +738,8 @@ Endpoint para login e logout do usuário
 + Request 200 (application/json)
 
     + Headers
-   
+    
+            Accept: application/vnd.tasksmanager.v2
             Authorization: {Basic ABC123}
             
 + Request 200 (application/json)  
@@ -717,7 +781,8 @@ Endpoint para login e logout do usuário
 + Request 200 (application/json)
 
     + Headers
-   
+
+            Accept: application/vnd.tasksmanager.v2
             Authorization: {Basic ABC123}
             
 + Request 200 (application/json)  
@@ -758,5 +823,6 @@ Endpoint para login e logout do usuário
 + Response 204 (application/json)
 
     + Headers
-   
+
+            Accept: application/vnd.tasksmanager.v2
             Autorization: {{token}}
