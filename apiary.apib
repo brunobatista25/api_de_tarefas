@@ -658,14 +658,15 @@ Endpoint para login e logout do usuário
 + done (optional, boolean)
 
 ### Listar Tarefas [GET]
-+ Response 200 (application/json) 
+
++ Request 200 (application/json) 
 
     + Headers
 
             Accept: application/vnd.tasksmanager.v2
             Autorization: {{token}}
     
-+ Request 200 (application/json)    
++ Response 200 (application/json)    
 
         {
           "user_id": 12,
@@ -687,16 +688,16 @@ Endpoint para login e logout do usuário
             Accept: application/vnd.tasksmanager.v2
             Authorization: {Basic ABC123}
             
-+ Request 200 (application/json)  
+   + body 
 
-        {
-          "task": {
-            "title": "Tarefa 1",
-            "description": "Descrição da tarefa 1.",
-            "deadline": "2018-08-21 15:00:00",
-            "done": true
-          }
-        }
+            {
+              "task": {
+                "title": "Tarefa 1",
+                "description": "Descrição da tarefa 1.",
+                "deadline": "2018-08-21 15:00:00",
+                "done": true
+              }
+            }
             
 + Response 201 (application/json)
 
